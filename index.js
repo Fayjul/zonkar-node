@@ -1,5 +1,8 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 const port = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
@@ -22,6 +25,11 @@ app.get('/users', (req, res) => {
   } else {
     res.send(users);
   }
+});
+
+app.post('/users', (req, res) => {
+  console.log('hitting the post');
+  res.send('data saving');
 });
 app.get('/users/:id', (req, res) => {
   const id = req.params.id;
