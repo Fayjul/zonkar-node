@@ -18,10 +18,15 @@ app.get('/users', (req, res) => {
     const searchResult = users.filter((user) =>
       user.name.toLowerCase().includes(search)
     );
-    req.send(searchResult);
+    res.send(searchResult);
   } else {
-    req.send(users);
+    res.send(users);
   }
+});
+app.get('/users/:id', (req, res) => {
+  const id = req.params.id;
+  const user = users[id];
+  res.send(user);
 });
 
 app.listen(port, () => {
